@@ -43,7 +43,7 @@ training(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TRAINING_DATA_PATH,TESTING_DATA_PATH)
 ```
 評估效能函數
 ```
-evaluation(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TESTING_DATA_PATH)
+evaluation(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TESTING_DATA_PATH,EVALUATION_MODEL_PATH)
 ```
 
 各參數設定:
@@ -79,17 +79,18 @@ training_class6.py
 
 訓練函數
 ```
-training(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TRAINING_DATA_PATH,TESTING_DATA_PATH)
+training(class_dic,img_shape,num_class,training_data_path_VPN,training_data_path_Tor,training_data_path_Normal,testing_data_path_VPN,testing_data_path_Tor,testing_data_path_Normal)
+
 ```
 評估效能函數
 ```
-evaluation(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TESTING_DATA_PATH)
+evaluation(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TESTING_DATA_PATH_VPN,TESTING_DATA_PATH_TOR,TESTING_DATA_PATH_NORMAL,EVALUATION_CNN_PATH,EVALUATION_VGG16_PATH)
 ```
 
 各參數設定:
 分類類別設定
 ```
-CLASS_DIC={0:"nonStreaming",1:"isStreaming"}
+CLASS_DIC={0:"Normal_nonStreaming",1:"Normal_isStreaming",2:"VPN_nonStreaming",3:"VPN_isStreaming",4:"Tor_nonStreaming",5:"Tor_isStreaming"}
 ```
 輸入圖片格式設定
 ```
@@ -97,14 +98,23 @@ IMG_SHAPE=(200,200,1)
 ```
 判斷類別數量
 ```
-NUM_CLASS=1
+NUM_CLASS=6
 ```
 訓練集路徑
 ```
-TRAINING_DATA_PATH="dataset/training/"
+TRAINING_DATA_PATH_VPN="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_VPN/dataset/training/"
+TRAINING_DATA_PATH_TOR="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_Tor/dataset/training/"
+TRAINING_DATA_PATH_NORMAL="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_Normal/dataset/training/"
 ```
 測試集路徑
 ```
-TESTING_DATA_PATH="dataset/testing/"
+TESTING_DATA_PATH_VPN="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_VPN/dataset/testing/"
+TESTING_DATA_PATH_TOR="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_Tor/dataset/testing/"
+TESTING_DATA_PATH_NORMAL="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_Normal/dataset/testing/"
 ```
+欲評估模型路徑
+```
+EVALUATION_CNN_PATH="record/CNN-weights-improvement-07-0.80.hdf5"
+EVALUATION_VGG16_PATH="record/VGG16-weights-improvement-10-0.86.hdf5"
 
+```
