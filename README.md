@@ -37,6 +37,37 @@ training_binary.py
 ---
 二元分類器訓練，判斷是否為Streaming的flow圖片
 
+訓練函數
+```
+training(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TRAINING_DATA_PATH,TESTING_DATA_PATH)
+```
+評估效能函數
+```
+evaluation(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TESTING_DATA_PATH)
+```
+
+各參數設定:
+分類類別設定
+```
+CLASS_DIC={0:"nonStreaming",1:"isStreaming"}
+```
+輸入圖片格式設定
+```
+IMG_SHAPE=(200,200,1)
+```
+判斷類別數量
+```
+NUM_CLASS=1
+```
+訓練集路徑
+```
+TRAINING_DATA_PATH="dataset/training/"
+```
+測試集路徑
+```
+TESTING_DATA_PATH="dataset/testing/"
+```
+
 
 training_class6.py
 ---
