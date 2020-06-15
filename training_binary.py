@@ -19,6 +19,13 @@ from sklearn.metrics import f1_score
 
 
 
+CLASS_DIC={0:"nonStreaming",1:"isStreaming"}
+IMG_SHAPE=(200,200,1)
+NUM_CLASS=1
+TRAINING_DATA_PATH="dataset/training/"
+TESTING_DATA_PATH="dataset/testing/"
+
+
 def get_dataset(path,class_dic):
     print("Loading Dataset....")
     filenames=os.listdir(path)
@@ -90,20 +97,10 @@ def CNN(input_shape,num_class):
     
     return model
     
-def training():
-    
-    class_dic={0:"nonStreaming",1:"isStreaming"}
-    img_shape=(200,200,1)
-    num_class=1
-    
-    
-    training_data_path="dataset/training/"
+def training(class_dic,img_shape,num_class,training_data_path,testing_data_path):
+   
     x_train,y_train=get_dataset(training_data_path,class_dic)
-    testing_data_path="dataset/testing/"
-    x_test,y_test=get_dataset(testing_data_path,class_dic)
-
-    
-    
+    x_test,y_test=get_dataset(testing_data_path,class_dic) 
     
     x_train4D=x_train.reshape(x_train.shape[0],img_shape[0],img_shape[1],img_shape[2]).astype('float32')
     x_test4D=x_test.reshape(x_test.shape[0],img_shape[0],img_shape[1],img_shape[2]).astype('float32')
@@ -153,7 +150,7 @@ def training():
     
     
 
-def evaluation():
+def evaluation(class_dic,img_shape,num_class,testing_data_path):
       
     class_dic={0:"nonStreaming",1:"isStreaming"}
     img_shape=(200,200,1)
@@ -205,8 +202,8 @@ def evaluation():
     print('F1 score: %f' % f1)    
     
 def main(): 
-    #training()   
-    evaluation()
+    training(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TRAINING_DATA_PATH,TESTING_DATA_PATH)
+    evaluation(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TESTING_DATA_PATH)
         
     
     
