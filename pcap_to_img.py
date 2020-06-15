@@ -7,17 +7,11 @@ from scapy.utils import PcapReader
 import cv2
 import numpy as np
 
-#pcap存放資料夾位址
 inputPath="/home/lab507hyc/disk4/Tor_Streaming/Pcaps/nonTor/"
-#輸出資料夾位址
 outputPath="/home/lab507hyc/disk4/Tor_Streaming/nonTor_img/"
-#圖片類別
 flow_class="Normal"
-#網站類別
 web_list=["youtube","seventeen","twitch","aim_chat","bittorrent","email","facebook_audio","facebook_chat","ftps","hangouts_audio","hangouts_chat","icq_chat","netflix","sftp","skype_audio","skype_chat","skype_files","spotify","vimeo","voipbuster"]
-#取多少packet當一個flow
 PACKET_RANGE=200
-#輸出圖片大小
 IMG_WIDTH=200
 RAWDATA_SIZE=IMG_WIDTH*IMG_WIDTH
 
