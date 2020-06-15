@@ -24,6 +24,9 @@ TESTING_DATA_PATH_VPN="/home/lab507hyc/disk4/workstation_40575018h/classificatio
 TESTING_DATA_PATH_TOR="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_Tor/dataset/testing/"
 TESTING_DATA_PATH_NORMAL="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_Normal/dataset/testing/"
 
+EVALUATION_CNN_PATH="record/CNN-weights-improvement-07-0.80.hdf5"
+EVALUATION_VGG16_PATH="record/VGG16-weights-improvement-10-0.86.hdf5"
+
 
 
 def get_dataset(path,class_dic):
@@ -233,7 +236,7 @@ def training(class_dic,img_shape,num_class,training_data_path_VPN,training_data_
     
 
 
-def evaluation(class_dic,img_shape,num_class,testing_data_path_VPN,testing_data_path_Tor,testing_data_path_Normal):
+def evaluation(class_dic,img_shape,num_class,testing_data_path_VPN,testing_data_path_Tor,testing_data_path_Normal,evaluation_CNN_path,evaluation_VGG16_path):
     
     x_test,y_test=get_dataset(testing_data_path_VPN,testing_data_path_Tor,testing_data_path_Normal,class_dic)
 
@@ -246,7 +249,7 @@ def evaluation(class_dic,img_shape,num_class,testing_data_path_VPN,testing_data_
 
     model=CNN(img_shape,num_class)
     model.compile(loss='categorical_crossentropy',optimizer=optimizers.RMSprop(lr=1e-4),metrics=['accuracy'])   
-    model.load_weights('record/CNN-weights-improvement-07-0.80.hdf5')
+    model.load_weights(evaluation_CNN_path)
     score=model.evaluate(x_test4D_normalize,y_testOneHot)
     print("CNN score:")
     print(score)
@@ -255,7 +258,7 @@ def evaluation(class_dic,img_shape,num_class,testing_data_path_VPN,testing_data_
     model=VGG16(img_shape,num_class)
     model.compile(loss='categorical_crossentropy',optimizer=optimizers.RMSprop(lr=1e-4),metrics=['accuracy'])   
     
-    model.load_weights('record/VGG16-weights-improvement-10-0.86.hdf5')
+    model.load_weights(evaluation_VGG16_path)
     score=model.evaluate(x_test4D_normalize,y_testOneHot)
     print("VGG16 score:")
     print(score)
@@ -267,7 +270,7 @@ def evaluation(class_dic,img_shape,num_class,testing_data_path_VPN,testing_data_
 
 def main():
     training(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TRAINING_DATA_PATH_VPN,TRAINING_DATA_PATH_TOR,TRAINING_DATA_PATH_NORMAL,TESTING_DATA_PATH_VPN,TESTING_DATA_PATH_TOR,TESTING_DATA_PATH_NORMAL)
-    #evaluation(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TESTING_DATA_PATH_VPN,TESTING_DATA_PATH_TOR,TESTING_DATA_PATH_NORMAL)       
+    #evaluation(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TESTING_DATA_PATH_VPN,TESTING_DATA_PATH_TOR,TESTING_DATA_PATH_NORMAL,EVALUATION_CNN_PATH,EVALUATION_VGG16_PATH)       
     
     
     
