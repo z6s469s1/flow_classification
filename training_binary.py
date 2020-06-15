@@ -24,6 +24,7 @@ IMG_SHAPE=(200,200,1)
 NUM_CLASS=1
 TRAINING_DATA_PATH="dataset/training/"
 TESTING_DATA_PATH="dataset/testing/"
+EVALUATION_MODEL_PATH="record/weights-improvement-30-0.98.hdf5"
 
 
 def get_dataset(path,class_dic):
@@ -150,7 +151,7 @@ def training(class_dic,img_shape,num_class,training_data_path,testing_data_path)
     
     
 
-def evaluation(class_dic,img_shape,num_class,testing_data_path):
+def evaluation(class_dic,img_shape,num_class,testing_data_path,evaluation_model_path):
       
     class_dic={0:"nonStreaming",1:"isStreaming"}
     img_shape=(200,200,1)
@@ -172,7 +173,7 @@ def evaluation(class_dic,img_shape,num_class,testing_data_path):
     model.compile(loss='binary_crossentropy',optimizer=optimizers.RMSprop(lr=1e-4),metrics=['accuracy'])
     
     #load weights
-    model.load_weights('record/weights-improvement-30-0.98.hdf5')
+    model.load_weights()
 
 
     #keras evaluation
@@ -203,7 +204,7 @@ def evaluation(class_dic,img_shape,num_class,testing_data_path):
     
 def main(): 
     training(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TRAINING_DATA_PATH,TESTING_DATA_PATH)
-    evaluation(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TESTING_DATA_PATH)
+    evaluation(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TESTING_DATA_PATH,EVALUATION_MODEL_PATH)
         
     
     
