@@ -12,6 +12,18 @@ from keras.callbacks import EarlyStopping
 from keras.callbacks import ModelCheckpoint
 from keras import optimizers
 
+CLASS_DIC={0:"Normal_nonStreaming",1:"Normal_isStreaming",2:"VPN_nonStreaming",3:"VPN_isStreaming",4:"Tor_nonStreaming",5:"Tor_isStreaming"}
+IMG_SHAPE=(200,200,1)
+NUM_CLASS=6
+    
+TRAINING_DATA_PATH_VPN="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_VPN/dataset/training/"
+TRAINING_DATA_PATH_TOR="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_Tor/dataset/training/"
+TRAINING_DATA_PATH_NORMAL="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_Normal/dataset/training/"
+    
+TESTING_DATA_PATH_VPN="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_VPN/dataset/testing/"
+TESTING_DATA_PATH_TOR="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_Tor/dataset/testing/"
+TESTING_DATA_PATH_NORMAL="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_Normal/dataset/testing/"
+
 
 
 def get_dataset(path,class_dic):
@@ -182,22 +194,11 @@ def CNN(input_shape,num_class):
     
     return model
     
-def training():
+def training(class_dic,img_shape,num_class,training_data_path_VPN,training_data_path_Tor,training_data_path_Normal,testing_data_path_VPN,testing_data_path_Tor,testing_data_path_Normal):
     
-    class_dic={0:"Normal_nonStreaming",1:"Normal_isStreaming",2:"VPN_nonStreaming",3:"VPN_isStreaming",4:"Tor_nonStreaming",5:"Tor_isStreaming"}
-    img_shape=(200,200,1)
-    num_class=6
+
     
     #load datasets
-    training_data_path_VPN="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_VPN/dataset/training/"
-    training_data_path_Tor="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_Tor/dataset/training/"
-    training_data_path_Normal="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_Normal/dataset/training/"
-
-    testing_data_path_VPN="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_VPN/dataset/testing/"
-    testing_data_path_Tor="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_Tor/dataset/testing/"
-    testing_data_path_Normal="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_Normal/dataset/testing/"
-
-
     x_train,y_train=get_dataset(training_data_path_VPN,training_data_path_Tor,training_data_path_Normal,class_dic)
     x_test,y_test=get_dataset(testing_data_path_VPN,testing_data_path_Tor,testing_data_path_Normal,class_dic)
 
@@ -232,16 +233,8 @@ def training():
     
 
 
-def evaluation():
+def evaluation(class_dic,img_shape,num_class,testing_data_path_VPN,testing_data_path_Tor,testing_data_path_Normal):
     
-    class_dic={0:"Normal_nonStreaming",1:"Normal_isStreaming",2:"VPN_nonStreaming",3:"VPN_isStreaming",4:"Tor_nonStreaming",5:"Tor_isStreaming"}
-    img_shape=(200,200,1)
-    num_class=6
-    
-    #load datasets
-    testing_data_path_VPN="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_VPN/dataset/testing/"
-    testing_data_path_Tor="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_Tor/dataset/testing/"
-    testing_data_path_Normal="/home/lab507hyc/disk4/workstation_40575018h/classification_streaming_Normal/dataset/testing/"
     x_test,y_test=get_dataset(testing_data_path_VPN,testing_data_path_Tor,testing_data_path_Normal,class_dic)
 
     #data preprocessing
@@ -270,30 +263,11 @@ def evaluation():
 
 
 
-def show_model():
-    
-    img_shape=(200,200,1)
-    num_class=6
-    
-    
-    model=CNN(img_shape,num_class)
-    model.compile(loss='categorical_crossentropy',optimizer=optimizers.RMSprop(lr=1e-4),metrics=['accuracy'])   
-    print("simple CNN:")
-    print(model.summary())
-
-    
-    model=VGG16(img_shape,num_class)
-    model.compile(loss='categorical_crossentropy',optimizer=optimizers.RMSprop(lr=1e-4),metrics=['accuracy'])   
-    print("VGG16:")
-    print(model.summary())
-
-
 
 
 def main():
-    #show_model()
-    training()
-    evaluation()        
+    training(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TRAINING_DATA_PATH_VPN,TRAINING_DATA_PATH_TOR,TRAINING_DATA_PATH_NORMAL,TESTING_DATA_PATH_VPN,TESTING_DATA_PATH_TOR,TESTING_DATA_PATH_NORMAL)
+    #evaluation(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TESTING_DATA_PATH_VPN,TESTING_DATA_PATH_TOR,TESTING_DATA_PATH_NORMAL)       
     
     
     
