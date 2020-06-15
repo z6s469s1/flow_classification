@@ -45,8 +45,6 @@ training(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TRAINING_DATA_PATH,TESTING_DATA_PATH)
 ```
 evaluation(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TESTING_DATA_PATH,EVALUATION_MODEL_PATH)
 ```
-
-各參數設定:
 分類類別設定
 ```
 CLASS_DIC={0:"nonStreaming",1:"isStreaming"}
@@ -79,15 +77,12 @@ training_class6.py
 
 訓練函數
 ```
-training(class_dic,img_shape,num_class,training_data_path_VPN,training_data_path_Tor,training_data_path_Normal,testing_data_path_VPN,testing_data_path_Tor,testing_data_path_Normal)
-
+training(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TRAINING_DATA_PATH_VPN,TRAINING_DATA_PATH_TOR,TRAINING_DATA_PATH_NORMAL,TESTING_DATA_PATH_VPN,TESTING_DATA_PATH_TOR,TESTING_DATA_PATH_NORMAL)
 ```
 評估效能函數
 ```
 evaluation(CLASS_DIC,IMG_SHAPE,NUM_CLASS,TESTING_DATA_PATH_VPN,TESTING_DATA_PATH_TOR,TESTING_DATA_PATH_NORMAL,EVALUATION_CNN_PATH,EVALUATION_VGG16_PATH)
 ```
-
-各參數設定:
 分類類別設定
 ```
 CLASS_DIC={0:"Normal_nonStreaming",1:"Normal_isStreaming",2:"VPN_nonStreaming",3:"VPN_isStreaming",4:"Tor_nonStreaming",5:"Tor_isStreaming"}
