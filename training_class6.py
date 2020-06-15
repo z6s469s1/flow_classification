@@ -291,9 +291,9 @@ def show_model():
 
 
 def main():
-    show_model()
-    #training()
-    #evaluation()        
+    #show_model()
+    training()
+    evaluation()        
     
     
     
